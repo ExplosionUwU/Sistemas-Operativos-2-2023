@@ -1,52 +1,28 @@
-import subprocess
-from tkinter import *
-from subprocess import Popen
-import os
-from PIL import Image,ImageTk
+import tkinter as tk
 
+class MyApp:
+    def __init__(self):
+        # Crear ventana y elementos de interfaz
+        self.ventana = tk.Tk()
+        self.label = tk.Label(self.ventana, text="Contenido inicial")
+        self.boton = tk.Button(self.ventana, text="Actualizar", command=self.actualizar_label)
+        
+        # Variables de control
+        self.contenido_actual = "Contenido inicial"
+        
+        # Colocar elementos de interfaz en la ventana
+        self.label.pack()
+        self.boton.pack()
+        
+    def actualizar_label(self):
+        # Actualizar el contenido del label
+        self.contenido_actual = "Contenido actualizado"
+        self.label.config(text=self.contenido_actual)
+        
+    def run(self):
+        # Ejecutar el programa
+        self.ventana.mainloop()
 
-#Poner imagen en boton
-root = Tk()
-root.geometry("500x500")
-
-image = Image.open("C:/Users/ralej/Desktop/universidad semestre 7/Sistemas operativos 2/trabajo 1/Imagenes/OsuLogo.png")
-img = ImageTk.PhotoImage(image)
-
-btn = Button(root, image=img)
-btn.pack()
-
-root.mainloop
-
-#Esta fue gracias cristian
-#Juego offline
-'''
-juego1 = "C:/Users/ralej/AppData/Local/osulazer/osu!.exe"
-subprocess.Popen([juego1],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()
-
-#navegador
-navegador = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-subprocess.Popen([navegador],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()'''
-'''
-#block de notas
-blockNotas = "notepad.exe"
-subprocess.Popen([blockNotas],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()
-
-#musica
-musica = "Spotify.exe"
-subprocess.Popen([musica],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()
-
-juego2 = "C:/Riot Games/Riot Client/RiotClientServices.exe"
-subprocess.Popen([juego2],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()
-'''
-#abrir la app opcional :D
-#navegador
-#direccionnav = "C:/FromSoftware/Google/Chrome/Application/"
-#os.system(direccionnav + 'chrome.exe')
-#block de notas
-#os.system('notepad')
-#musica
-#os.system('spotify.exe')
-#juego
-#direccionLol = 'C:/RiotGames/LeagueofLegends/'
-#os.system(direccionLol + 'LeagueClient.exe')
-
+# Crear instancia de la aplicación y ejecutarla
+app = MyApp()
+app.run()
