@@ -22,13 +22,14 @@ class App():
       self.label2.place(x=330,y=460)
       self.label = Label(ventana, text="OFF", font=fuente2)
       self.label.place(x=340,y=560)
-      #botones
 
+      #botones
       #boton juego 1 offline
       image = Image.open("trabajo 1/Imagenes/OsuLogo.png")
       imgJuego1 = ImageTk.PhotoImage(image)
       self.botonJuego1 = Button(ventana, width=150, height=150, image=imgJuego1, command=self.accionBotonJuego1)
       self.botonJuego1.place(x=120,y=100)
+
       #cerrar juego1
       imageClose = Image.open("trabajo 1\Imagenes\salirLogo.png")
       imgJuego1Close = ImageTk.PhotoImage(imageClose)
@@ -40,6 +41,7 @@ class App():
       imgJuego2 = ImageTk.PhotoImage(image2)
       self.botonJuego2 = Button(ventana, width=150, height=150, image=imgJuego2, command=self.accionBotonJuego2)
       self.botonJuego2.place(x=290,y=100)
+
       #cerrar juego 2
       image2Close = Image.open("trabajo 1\Imagenes\salirLogo.png")
       imgJuego12Close = ImageTk.PhotoImage(image2Close)
@@ -51,6 +53,7 @@ class App():
       imgMusica = ImageTk.PhotoImage(image3)
       self.botonMusica = Button(ventana, width=150, height=150, image=imgMusica, command=self.accionBotonMusica)
       self.botonMusica.place(x=460,y=100)
+
       #cerrar musica
       image3Close = Image.open("trabajo 1/Imagenes/salirLogo.png")
       imgMusicaClose = ImageTk.PhotoImage(image3Close)
@@ -62,6 +65,7 @@ class App():
       imgNavegador = ImageTk.PhotoImage(image4)
       self.botonNavegador = Button(ventana, width=150, height=150, image=imgNavegador, command=self.accionBotonNavegador)
       self.botonNavegador.place(x=630,y=100)
+
       #Cerrarnavegador
       image4Close = Image.open("trabajo 1/Imagenes/salirLogo.png")
       imgNavegadorClose = ImageTk.PhotoImage(image4Close)
@@ -73,6 +77,7 @@ class App():
       imgVSC = ImageTk.PhotoImage(image5)
       self.botonNavegador = Button(ventana, width=150, height=150, image=imgVSC, command=self.accionBotonVSC)
       self.botonNavegador.place(x=800,y=100)
+
       #cerrar vsc
       image5Close = Image.open("trabajo 1/Imagenes/salirLogo.png")
       imgVSCClose = ImageTk.PhotoImage(image5Close)
@@ -117,6 +122,7 @@ class App():
       subprocess.Popen([musica])
       self.contenido_actual = "Spotify.exe    Running"
       self.label.config(text=self.contenido_actual)
+
    #cerrar musica
    def accionCerrarMusica(self):
       cerrarMusica = "Spotify.exe"
@@ -144,6 +150,7 @@ class App():
       subprocess.Popen([visualCode])
       self.contenido_actual = "Notepad.exe    Running"
       self.label.config(text=self.contenido_actual)
+      
    #cerrarvsc
    def accionCerrarVSC(self):
       cerrarvsc = "notepad.exe"
