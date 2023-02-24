@@ -13,7 +13,7 @@ class App():
       ventana.geometry("1080x700")
       ventana.configure(bg='white')
 
-      #widgets
+      #widgets ya vengo 
       Fuente = font.Font(size=20)
       fuente2 = font.Font(size=35)
       self.label1 = Label(ventana, text="Selecciona una operacion", font=Fuente)
