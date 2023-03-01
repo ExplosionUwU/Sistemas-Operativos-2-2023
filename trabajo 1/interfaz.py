@@ -4,16 +4,25 @@ from tkinter import messagebox
 import subprocess
 from PIL import Image,ImageTk
 import tkinter.font as font
-
+import threading
 #Interfaz
 class App():
+   class HiloContador(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.numero = 0
+        self.detener = False
+
    def __init__(self):
+
       ventana=Tk()
       ventana.title("Administrador de aplicaiones")
-      ventana.geometry("1080x700")
+      ventana.geometry("1500x700")
       ventana.configure(bg='white')
 
       #widgets ya vengo 
+      self.numero = 0
+      self.detener = False
       Fuente = font.Font(size=20)
       fuente2 = font.Font(size=35)
       self.label1 = Label(ventana, text="Selecciona una operacion", font=Fuente)
@@ -22,6 +31,10 @@ class App():
       self.label2.place(x=330,y=460)
       self.label = Label(ventana, text="OFF", font=fuente2)
       self.label.place(x=340,y=560)
+      self.labelHilo1 = Label(ventana,text="aqui toi", font=fuente2)
+      self.labelHilo1.place(x=1100,y=300)
+      self.labelHilo2 = Label(ventana,text="aqui toi", font=fuente2)
+      self.labelHilo2.place(x=1300,y=300)
 
       #botones
       #boton juego 1 offline
@@ -83,6 +96,24 @@ class App():
       imgVSCClose = ImageTk.PhotoImage(image5Close)
       self.botoncerrarvsc = Button(ventana, width=50, height=50, image=imgVSCClose, command=self.accionCerrarVSC)
       self.botoncerrarvsc.place(x=800,y=300)
+
+      #hilos
+      #hilo1
+      image6 = Image.open("trabajo 1/Imagenes/hilo.png")
+      imgHilo1 = ImageTk.PhotoImage(image6)
+      self.botonHilo1 = Button(ventana, width=100, height=100, image=imgHilo1, command=self.accionBotonHilo1)
+      self.botonHilo1.place(x=1115,y=370)
+      #parar hilo1
+      image65 = Image.open("trabajo 1/Imagenes/hilo.png")
+      imgHilo1Close = ImageTk.PhotoImage(image65)
+      self.botonHilo1 = Button(ventana, width=100, height=100, image=imgHilo1Close, command=self.accionDetenerHilo1)
+      self.botonHilo1.place(x=1115,y=400)
+
+      #hilo2
+      image7 = Image.open("trabajo 1/Imagenes/hilo.png")
+      imgHilo2 = ImageTk.PhotoImage(image7)
+      self.botonHilo2 = Button(ventana, width=100, height=100, image=imgHilo2, command=self.accionDetenerHilo1)
+      self.botonHilo2.place(x=1310,y=370)
 
 
       ventana.mainloop()
@@ -157,6 +188,17 @@ class App():
       subprocess.call(["taskkill", "/f", "/im", cerrarvsc])
       self.contenido_actual = "OFF"
       self.label.config(text=self.contenido_actual)
+
+   #hilos
+   #hilo 1
+   def accionBotonHilo1(self):
+      while not self.detener:
+            self.numero += 1
+            self.labelHilo1.config(text=self.numero)
+   #detenerhilo1
+   def accionDetenerHilo1(self):
+        self.detener = True
+      
 
    
 #interfaz principal
