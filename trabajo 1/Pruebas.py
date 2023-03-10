@@ -1,43 +1,30 @@
+import os
 import tkinter as tk
-import threading
 
-class VentanaContador(tk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.master.title("Contador")
-        self.pack()
-        self.crear_widgets()
-        self.contador = 0
-        self.hilo_incrementar = None
+# función para abrir Spotify.exe
+def open_spotify():
+    os.startfile('spotify.exe')
 
-    def crear_widgets(self):
-        # crear el botón para iniciar el contador
-        self.boton_iniciar = tk.Button(self, text="Iniciar contador", command=self.iniciar_contador)
-        self.boton_iniciar.pack()
+# función para abrir Notepad.exe
+def open_notepad():
+    os.startfile('notepad.exe')
 
-        # crear la etiqueta para mostrar el contador
-        self.label_contador = tk.Label(self, text="Contador: 0")
-        self.label_contador.pack()
+# Crear ventana principal
+root = tk.Tk()
+root.geometry('200x100')
+root.title('Ejecución de programas')
 
-    def incrementar_contador(self):
-        while True:
-            self.contador += 1
+# Crear botón para iniciar la ejecución de programas
+button = tk.Button(root, text='Ejecutar programas', command=lambda: root.after(10000, open_notepad), state=tk.DISABLED)
+button.pack(pady=10)
 
-    def actualizar_contador(self):
-        self.label_contador.config(text="Contador: {}".format(self.contador))
-        self.master.after(1000, self.actualizar_contador)
+# Crear función para habilitar el botón después de 5 segundos
+def enable_button():
+    button.configure(state=tk.NORMAL)
+    root.after(5000, open_spotify)
 
-    def iniciar_contador(self):
-        # crear el hilo para incrementar el contador
-        if not self.hilo_incrementar or not self.hilo_incrementar.is_alive():
-            self.hilo_incrementar = threading.Thread(target=self.incrementar_contador)
-            self.hilo_incrementar.start()
+# Ejecutar la función de habilitación del botón después de 10 segundos
+root.after(10000, enable_button)
 
-        # actualizar el valor del contador en la etiqueta
-        self.actualizar_contador()
-
-# crear la ventana principal
-ventana = tk.Tk()
-ventana_contador = VentanaContador(master=ventana)
-ventana_contador.mainloop()
+# Iniciar la interfaz gráfica
+root.mainloop()
